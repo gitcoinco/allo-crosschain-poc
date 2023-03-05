@@ -13,6 +13,8 @@ contract AxelartrustedForwarder is AxelarExecutable {
 
     address public trustedGateway;
 
+    string public mehRandom;
+
     constructor(address gateway_) AxelarExecutable(gateway_) {
         trustedGateway = gateway_;
     }
@@ -42,6 +44,8 @@ contract AxelartrustedForwarder is AxelarExecutable {
         require(msg.sender == trustedGateway, "not trusted gateway");
 
         round.applyToRound(id);
+
+        mehRandom = sourceChain_;
 
     }
 
