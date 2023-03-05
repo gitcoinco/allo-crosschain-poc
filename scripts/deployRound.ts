@@ -12,12 +12,15 @@ async function main() {
     const axelarRecieverContract = await axelarTrustedReciever.deploy();
     console.log(`Deploying axelarRecieverContract to ${axelarRecieverContract.address}`);
 
-    // Link Round
-    axelarRecieverContract.setRoundAddress(round.address);
+    // Link Round to Reciever
+    await axelarRecieverContract.setRoundAddress(round.address);
+    
+    // Link Reciever to Round
+    await round.setTrustedReciever(axelarTrustedReciever, true);
 
-    // TODO: 
+    // Set trusted forwarder
     const trustedForwarder = "0x00000000"
-    await round.setTrustedReciever(trustedForwarder, true);
+    await axelarRecieverContract.setTrustedForwarder(trustedForwarder);
     
 }
 

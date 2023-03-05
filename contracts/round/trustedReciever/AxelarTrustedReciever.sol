@@ -4,7 +4,7 @@ import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contra
 import { IAxelarGateway } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol';
 import { Round } from '../Round.sol';
 
-contract AxelartrustedForwarder is AxelarExecutable {
+contract AxelartrustedReciever is AxelarExecutable {
 
     Round round;
 
