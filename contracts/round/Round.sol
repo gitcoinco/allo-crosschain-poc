@@ -8,7 +8,7 @@ contract Round {
     mapping(address => bool) public trustedReceivers;
 
     // update trusted reciever for each cross chain protocol
-    function setTrustedReciever(address trustedReciverAddress) public {
+    function setTrustedReceiver(address trustedReciverAddress) public {
         trustedReceivers[trustedReciverAddress] = true;
     }
 
