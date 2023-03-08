@@ -10,6 +10,8 @@ contract Registry {
 
     mapping(address => bool) public trustedForwarders;
 
+    event ProjectCreated(uint256 id);
+
     // id => owner
     mapping(uint256 => address) public projects;
 
@@ -25,16 +27,17 @@ contract Registry {
     function createProject() external {
         uint256 id = nextProjectID++;
         projects[id] = msg.sender;
+        emit ProjectCreated(id);
     }
 
     function updateForwarder(address _addr, bool _active) external onlyOwner {
         trustedForwarders[_addr] = _active;
     }
 
-    function applyToRound(address _applicationForwarder, RoundApplicationPayload memory _payload) external {
+    function applyToRound(address payable _applicationForwarder, RoundApplicationPayload memory _payload) payable public {
         require(trustedForwarders[_applicationForwarder] == true, "unknown application sender");
         require(projects[_payload.projectID] == msg.sender, "not project owner");
 
-        IApplicationForwarder(_applicationForwarder).applyToRound(_payload);
+        IApplicationForwarder(_applicationForwarder).applyToRound{value: msg.value}(_payload);
     }
 }

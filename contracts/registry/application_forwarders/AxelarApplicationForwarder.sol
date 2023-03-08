@@ -6,7 +6,7 @@ import { IAxelarGasService } from '@axelar-network/axelar-gmp-sdk-solidity/contr
 import "../interfaces/IApplicationForwarder.sol";
 import "../RoundApplicationPayload.sol";
 
-contract AxelarApplicationSender is IApplicationForwarder, AxelarExecutable {
+contract AxelarApplicationForwarder is IApplicationForwarder, AxelarExecutable {
     address projectRegistry;
     IAxelarGasService public immutable gasService;
 
